@@ -1,7 +1,3 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-
 const pizzaData = [
   {
     name: "Focaccia",
@@ -46,58 +42,3 @@ const pizzaData = [
     soldOut: false,
   },
 ];
-
-// Creeam noi componente in acelasi fisier
-function App() {
-  return (
-    <div className="container">
-      <Header />
-      <Menu />
-      <Footer />
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <div>
-      <h1>Fast React Pizza Co.</h1>
-    </div>
-  );
-}
-
-function Menu() {
-  return (
-    <div>
-      <h1>Our Menu</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
-  );
-}
-
-function Footer() {
-  return (
-    <footer>{new Date().toLocaleTimeString()} We're currently open.</footer>
-  );
-}
-
-function Pizza() {
-  return (
-    <div>
-      {/* Are cale directa la folderul public */}
-      <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato mozarella spinach and ricotta cheese</p>
-    </div>
-  );
-}
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
