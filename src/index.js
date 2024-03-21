@@ -58,41 +58,81 @@ function App() {
   );
 }
 
+//prop --> property
 function Header() {
   return (
-    <div>
-      <h1>Fast React Pizza Co.</h1>
-    </div>
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>;
+    </header>
   );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h1>Our Menu</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
+      {/* <Pizza
+        name="Good"
+        ingredients="Tomato mozarella spinach and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        // price="10" // ne trebuie numar, asta e string
+        price={10}
+      />
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato mozarella spinach and ricotta cheese"
+        photoName="pizzas/funghi.jpg"
+        price={13}
+      /> */}
+
+      {/* <div>
+        {pizzaData.map((pizza) => (
+          <Pizza name={pizza.name} />
+        ))}
+      </div> */}
+
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaFromMap={pizza} key={pizza.name} />
+        ))}
+      </ul>
+    </main>
   );
 }
 
 function Footer() {
+  // const hour = new Date().getHours();
+  // const openHour = 8;
+  // const closeHour = 22;
+  // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
+  // else alert("Sorry we're closed");
   return (
-    <footer>{new Date().toLocaleTimeString()} We're currently open.</footer>
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We're currently open.
+    </footer>
   );
 }
 
-function Pizza() {
+function Pizza(props) {
   return (
-    <div>
-      {/* Are cale directa la folderul public */}
-      <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato mozarella spinach and ricotta cheese</p>
-    </div>
+    // <div className="pizza">
+    /* Are cale directa la folderul public  */
+    /* {/* <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
+      </div> */
+
+    <li className="pizza">
+      <img src={props.pizzaFromMap.photoName} alt={props.name} />
+      <div>
+        <h3>{props.pizzaFromMap.name}</h3>
+        <p>{props.pizzaFromMap.ingredients}</p>
+        <span>{props.pizzaFromMap.price}</span>
+      </div>
+    </li>
   );
 }
 const root = ReactDOM.createRoot(document.getElementById("root"));
