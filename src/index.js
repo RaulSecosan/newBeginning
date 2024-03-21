@@ -75,11 +75,19 @@ function Menu() {
     <main className="menu">
       <h1>Our Menu</h1>
       {numPizza > 0 ? (
-        <ul className="pizzas">
-          {pizzaData.map((pizza) => (
-            <Pizza pizzaFromMap={pizza} key={pizza.name} />
-          ))}
-        </ul>
+        //React fragment <>, daca puneam intr un div ne strica formatul deoarece punea si <p> si <u> impreuna, cu react fragment sunt separate
+        <>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis no
+          </p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizzaFromMap={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
       ) : (
         <p>We're still working on our menu. Please come back later</p>
       )}
@@ -120,22 +128,15 @@ function Footer() {
 
 function Pizza(props) {
   return (
-    // <div className="pizza">
-    /* Are cale directa la folderul public  */
-    /* {/* <img src={props.photoName} alt={props.name} />
-      <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price}</span>
-      </div>
-      </div> */
-
-    <li className="pizza">
+    // <li className={props.pizzaFromMap.soldOut ? "pizza sold-out" : "pizza"}>
+    <li className={`pizza ${props.pizzaFromMap.soldOut ? "sold-out" : ""}`}>
       <img src={props.pizzaFromMap.photoName} alt={props.name} />
       <div>
         <h3>{props.pizzaFromMap.name}</h3>
         <p>{props.pizzaFromMap.ingredients}</p>
-        <span>{props.pizzaFromMap.price}</span>
+        <span>
+          {props.pizzaFromMap.soldOut ? "SOLD OUT" : props.pizzaFromMap.price}
+        </span>
       </div>
     </li>
   );
