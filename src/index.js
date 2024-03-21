@@ -68,47 +68,52 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizza = pizzas.length;
   return (
     <main className="menu">
       <h1>Our Menu</h1>
-      {/* <Pizza
-        name="Good"
-        ingredients="Tomato mozarella spinach and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        // price="10" // ne trebuie numar, asta e string
-        price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato mozarella spinach and ricotta cheese"
-        photoName="pizzas/funghi.jpg"
-        price={13}
-      /> */}
-
-      {/* <div>
-        {pizzaData.map((pizza) => (
-          <Pizza name={pizza.name} />
-        ))}
-      </div> */}
-
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaFromMap={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {numPizza > 0 ? (
+        <ul className="pizzas">
+          {pizzaData.map((pizza) => (
+            <Pizza pizzaFromMap={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later</p>
+      )}
     </main>
   );
 }
 
 function Footer() {
-  // const hour = new Date().getHours();
-  // const openHour = 8;
-  // const closeHour = 22;
+  const hour = new Date().getHours();
+  const openHour = 8;
+  const closeHour = 22;
   // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
   // else alert("Sorry we're closed");
+  const isOpen = hour >= openHour && hour <= closeHour;
+  // console.log(isOpen)
   return (
     <footer className="footer">
-      {new Date().toLocaleTimeString()} We're currently open.
+      {/* {isOpen && (
+        <div className="order">
+          <p>We're open until {closeHour}:00</p>
+          <button className="btn">Order</button>
+        </div>
+      )} */}
+      {isOpen ? (
+        <div className="order">
+          <p>We're open until {closeHour}:00</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00
+        </p>
+      )}
+      {/* {new Date().toLocaleTimeString()} We're currently open. */}
     </footer>
   );
 }
